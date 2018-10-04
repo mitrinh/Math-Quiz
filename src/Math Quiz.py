@@ -2,6 +2,7 @@
 # CS 3750
 # Python Program : Math Quiz
 # A simple math quiz game where you answer each question until you get one wrong
+# Problems: irrational numbers rounded to 15 decimal places
 
 import random, time
 
@@ -82,7 +83,7 @@ while(retry):
     difficulty = getDifficulty();
     # starts quiz
     print('Starting quiz...')
-    print('REMINDER: irrational numbers are rounded to 15 decimal places after the decimal')
+    print('REMINDER: irrational numbers are rounded to 15 decimal places')
     # used for multiple iterations
     correct = True
     # keeps going until you get a question wrong
