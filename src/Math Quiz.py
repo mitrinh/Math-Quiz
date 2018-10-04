@@ -1,13 +1,17 @@
 # Michael Trinh
 # CS 3750
 # Python Program : Math Quiz
-#   A simple math quiz game where you answer each question until you get one wrong
+# A simple math quiz game where you answer each question until you get one wrong
 
-import random
+import random, time
 
-# GLOBAL VARIABLES: list of operators and expression
+# GLOBAL VARIABLES: list of operators, list of expressions, expression
+#                   score, correct
 listOperators = ['+','-','*','/']
+listExpression = []
 expression = None
+score = 0
+correct = True
 
 # gets the mathematical expression in list form
 def getExpressionInList(listOperators):
@@ -19,7 +23,7 @@ def getExpressionInList(listOperators):
     # create an expression in list form using a loop
     for num in range(0,operands):
         # add operand to the list
-        listExpression.append(random.randint(0,10))
+        listExpression.append(random.randint(1,10))
         # add an operator after all operands except last one
         if(num != (operands-1)):
             listExpression.append(random.choice(listOperators))
@@ -36,31 +40,46 @@ def getExpression(listEx):
     return expression
 # end getExpression
 
-# prints the math question
-def printQuestion(expression):
-    # prints question    
-    print('What is ' + expression + ' ?')
-# end printQuestion    
+# returns the math question
+def getQuestion(expression):
+    # returns question    
+    return ('What is ' + expression + ' ?')
+# end getQuestion    
 
-# returns the position of the operator in the expression
-def getOperator(listOp, expression):
-    # operator not in expression returns -1
-    operatorPosition = -1
-    for operator in listOp:
-        operatorPosition = expression.find(operator)
-        if(operatorPosition != -1):
-            return operatorPosition
-    return operatorPosition    
-# end getOperator
+# returns the answer for the expression
+def getAnswer(listEx):
+    # calculates the answer depending on the operator
+    if(listEx[1] == '+'):
+        return listEx[0] + listEx[2];
+    elif(listEx[1] == '-'):
+        return listEx[0] - listEx[2];
+    elif(listEx[1] == '*'):
+        return listEx[0] * listEx[2];
+    else:
+        return listEx[0] / listEx[2];
+# end getAnswer
 
-# calculates the answer for the expression
-def getAnswer(expression):
-    print(expression)
-    print(getOperator(listOperators, expression))
-# end getAnswer    
-
-# set our global expression variable to getExpression return value
-expression = getExpression(getExpressionInList(listOperators))
-# prints the mathquestion
-printQuestion(expression)
-getAnswer(expression)
+# main: quiz
+print('Starting quiz...')
+print('REMEMBER: a quotient will require at least one decimal number')
+print('Example: 6/2 = 3.0')
+while(correct):
+    # updates listExpression
+    listExpression = getExpressionInList(listOperators)
+    # updates expression
+    expression = getExpression(listExpression)
+    # prints math question and allow input for answer and puts it in int form
+    myAnswer = int(input(getQuestion(expression)))
+    # updates correct answer
+    answer = getAnswer(listExpression)
+    # if question is wrong stop test and give score
+    if(myAnswer != answer):
+        correct = False
+        print('INCORRECT: The answer was' + str(answer) + '!')
+        time.sleep(1)
+        print('You got ' + str(score) + ' questions right!')
+    # else if question is right, keep going add increment score    
+    else:
+        print('CORRECT!')
+        score += 1
+# end quiz
