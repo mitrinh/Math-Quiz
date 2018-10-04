@@ -7,7 +7,7 @@
 import random, time
 
 # GLOBAL VARIABLES: list of operators, list of expressions, expression
-#                   score, correct, difficulty, again
+#                   score, correct, difficulty, retry
 listOperators = ['+','-','*','/']
 listExpression = []
 expression = None
@@ -53,13 +53,13 @@ def getQuestion(expression):
 def getAnswer(listEx):
     # calculates the answer depending on the operator
     if(listEx[1] == '+'):
-        return listEx[0] + listEx[2];
+        return listEx[0] + listEx[2]
     elif(listEx[1] == '-'):
-        return listEx[0] - listEx[2];
+        return listEx[0] - listEx[2]
     elif(listEx[1] == '*'):
-        return listEx[0] * listEx[2];
+        return listEx[0] * listEx[2]
     else:
-        return listEx[0] / listEx[2];
+        return listEx[0] / listEx[2]
 # end getAnswer
 
 # asks user to select the difficulty
@@ -80,7 +80,7 @@ def getDifficulty():
 # loop used to iterate many tries
 while(retry):
     # updates difficulty
-    difficulty = getDifficulty();
+    difficulty = getDifficulty()
     # starts quiz
     print('Starting quiz...')
     print('REMINDER: irrational numbers are rounded to 15 decimal places')
