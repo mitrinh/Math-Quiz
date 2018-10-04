@@ -6,7 +6,7 @@ import random
 
 # list of operations and expression
 listOperations = ['+','-','x','/']
-listExpression = None
+listExpression = []
 
 # gets the mathematical expression in list form
 def getExpression(listOperations):
@@ -19,16 +19,16 @@ def getExpression(listOperations):
         listExpression.append(random.randint(1,10))
         # add an operator after all operands except last one
         if(num != (operands-1)):
-            listExpression.append(listOperations)
+            listExpression.append(random.choice(listOperations))
 # end getExpression
 
 # prints the question
 def printQuestion(list):
     for element in list:
         if(element == list[0]):
-            expression = element
+            expression = str(element)
         else:
-            expression += element
+            expression += str(element)
     print('What is ' + expression + ' ?')
 # end pringQuestion
 
